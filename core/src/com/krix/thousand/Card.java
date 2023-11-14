@@ -1,6 +1,8 @@
 package com.krix.thousand;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -22,6 +24,8 @@ public class Card extends WidgetGroup {
     private Image cardImage;
     private Table statsTable;
 
+    public float cardHeight;
+    public float cardWidth;
 
     public Card(CardType cardType, int distance, String troubleType, String helpType) {
         this.cardType = cardType;
@@ -38,8 +42,11 @@ public class Card extends WidgetGroup {
         addActor(cardImage);
         addActor(statsTable);
 
-        // Adjust the size and position of the card elements
-        setSize(cardImage.getWidth(), cardImage.getHeight() + statsTable.getHeight());
+        cardHeight = Gdx.graphics.getHeight() / 3f;
+        cardWidth = cardHeight * (cardImage.getWidth() / cardImage.getHeight());
+
+        cardImage.setSize(cardWidth, cardHeight);
+
         statsTable.setPosition(0, -statsTable.getHeight());
 
         // Populate the statistics table based on the card type

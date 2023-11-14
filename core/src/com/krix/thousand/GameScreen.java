@@ -20,7 +20,11 @@ public class GameScreen extends ScreenAdapter {
 
         // Initialize a player with some cards
         player = new Player();
+        player.addCard(new Card(CardType.DISTANCE, 25, null, null));
+        player.addCard(new Card(CardType.DISTANCE, 50, null, null));
+        player.addCard(new Card(CardType.DISTANCE, 75, null, null));
         player.addCard(new Card(CardType.DISTANCE, 100, null, null));
+        player.addCard(new Card(CardType.DISTANCE, 200, null, null));
 //        player.addCard(new Card(CardType.TROUBLE, 0, "Engine", null));
 //        player.addCard(new Card(CardType.HELP, 0, null, "Engine"));
 //        player.addCard(new Card(CardType.TRUMP, 0, null, "Right of Way"));
@@ -30,11 +34,15 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void renderPlayerCards() {
-        float cardSpacing = Gdx.graphics.getWidth() / 10f;
+//        float cardSpacing = Gdx.graphics.getWidth() / 20f;
+        float cardSpacing = 10f;
         float cardY = 0; // Bottom of the screen
 
         for (Card card : player.getCards()) {
-            float cardX = cardSpacing * player.getCards().indexOf(card);
+//            float cardX = cardSpacing * player.getCards().indexOf(card);
+            int cardIndex = player.getCards().indexOf(card);
+
+            float cardX = cardIndex * (card.cardWidth + cardSpacing );
             card.setPosition(cardX, cardY);
             stage.addActor(card);
         }
