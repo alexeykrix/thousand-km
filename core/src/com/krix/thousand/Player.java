@@ -7,25 +7,48 @@ public class Player {
 
     private List<Card> cards;
 
+
+    private List<Card> hand;
+
+    private List<Card> distanceStack;
+    private List<Card> placedCards;
+
     public Player() {
-        cards = new ArrayList<>();
+        hand = new ArrayList<>();
+        distanceStack = new ArrayList<>();
+        placedCards = new ArrayList<>();
+    }
+    public List<Card> getHand() {
+        return hand;
     }
 
-    public List<Card> getCards() {
-        return cards;
+    public List<Card> getDistanceStack() {
+        return distanceStack;
     }
 
-    public void addCard(Card card) {
-        cards.add(card);
+    public List<Card> getPlacedCards() {
+        return placedCards;
     }
 
-    public void removeCard(Card card) {
-        cards.remove(card);
+    public void addToHand(Card card) {
+        hand.add(card);
+    }
+
+    public void addToDistanceStack(Card card) {
+        distanceStack.add(card);
+    }
+
+    public void removeFromHand(Card card) {
+        hand.remove(card);
+    }
+
+    public void placeCard(Card card) {
+        // Check if the player can place the card based on game rules
+        // For example, check if a trouble card is already placed
+        // If allowed, add to placed cards
+        placedCards.add(card);
+
+        // Remove the card from the hand or inventory based on where it came from
+        removeFromHand(card);
     }
 }
-
-
-//        addCard(new Card(CardType.DISTANCE, 100, null, null, new Texture("25-km.png")));
-//        addCard(new Card(CardType.TROUBLE, 0, "Engine", null, new Texture("25-km.png")));
-//        addCard(new Card(CardType.HELP, 0, null, "Engine", new Texture("25-km.png")));
-//        addCard(new Card(CardType.TRUMP, 0, null, "Right of Way", new Texture("25-km.png")));

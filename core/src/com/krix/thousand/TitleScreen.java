@@ -21,7 +21,7 @@ public class TitleScreen extends ScreenAdapter {
         batch = new SpriteBatch();
         font = new BitmapFont();
 
-        font.getData().setScale(Gdx.graphics.getHeight() * .01f);
+        font.getData().setScale(Gdx.graphics.getWidth() * .01f);
 
         // Calculate the position of the text
         GlyphLayout layout = new GlyphLayout(font, text);

@@ -22,7 +22,6 @@ public class Card extends WidgetGroup {
     private String helpType; // For help cards
 
     private Image cardImage;
-    private Table statsTable;
 
     public float cardHeight;
     public float cardWidth;
@@ -36,21 +35,16 @@ public class Card extends WidgetGroup {
         Texture cardTexture = loadTexture();
 
         cardImage = new Image(cardTexture);
-        statsTable = new Table();
 
         // Set up the layout
         addActor(cardImage);
-        addActor(statsTable);
 
-        cardHeight = Gdx.graphics.getHeight() / 3f;
-        cardWidth = cardHeight * (cardImage.getWidth() / cardImage.getHeight());
+
+        cardWidth = (Gdx.graphics.getWidth() - 30f) / 4f;
+        cardHeight = cardWidth * (cardImage.getHeight() / cardImage.getWidth());
+
 
         cardImage.setSize(cardWidth, cardHeight);
-
-        statsTable.setPosition(0, -statsTable.getHeight());
-
-        // Populate the statistics table based on the card type
-        populateStatsTable();
     }
 
     private Texture loadTexture() {
@@ -63,28 +57,5 @@ public class Card extends WidgetGroup {
         return new Texture(Gdx.files.internal(path));
     }
 
-    private void populateStatsTable() {
-        switch (cardType) {
-            case DISTANCE:
-                statsTable.add(createStatLabel("Distance: " + distance));
-                break;
-            case TROUBLE:
-                statsTable.add(createStatLabel("Trouble: " + troubleType));
-                break;
-            case HELP:
-                statsTable.add(createStatLabel("Help: " + helpType));
-                break;
-            case TRUMP:
-                statsTable.add(createStatLabel("Trump: " + helpType));
-                break;
-        }
-    }
 
-    private Label createStatLabel(String text) {
-        Label.LabelStyle labelStyle = new Label.LabelStyle();
-        labelStyle.font = new BitmapFont(); // Provide the desired font
-
-        Label label = new Label(text, labelStyle);
-        return label;
-    }
 }

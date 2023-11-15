@@ -17,7 +17,9 @@ public class Thousand extends Game {
 		batch = new SpriteBatch();
 		shapeRenderer = new ShapeRenderer();
 		font = new BitmapFont();
-		setScreen(new TitleScreen(this));
+//		setScreen(new TitleScreen(this));
+
+		setScreen(new GameScreen(this));
 	}
 
 	@Override
